@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body{
+      background-color: #ffe4c4;
+    }
+    
+    /* Style for the image */
+    img {
+      width: 50%; /* Set the initial width of the image */
+      border: 0px solid #000; /* Add a border around the image */
+      opacity: 0; /* Set the initial opacity to 0 to hide the image */
+      margin-left: auto;
+      margin-right: auto;
+      animation: zoomIn 3s ease forwards;
+      /* Add other styles for the animation, e.g. transform, scale, etc. */
+    }
+    img:hover{
+      transform: scale(10.10); /* Apply a scale transform on hover to make the image slightly larger */
+    }
+
+    .overall{
+      font-size: 20px; /* Set the font size */
+      color: #000000; /* Set the text color */
+      margin-top: 10px; /* Add some top margin for spacing */
+      
+      
+    }
+
+    /* Define a CSS animation */
+    @keyframes zoomIn {
+      from {
+        transform: scale(0); /* Set the initial scale to 0 */
+        opacity: 0; /* Set the initial opacity to 0 */
+      }
+      to {
+        transform: scale(1); /* Set the final scale to 1 */
+        opacity: 1; /* Set the final opacity to 1 */
+      }
+    }
+
+    .text-message {
+      margin-left: 50px; /* Add some left margin for spacing from the image */
+      display: inline-block; /* Display the text message as inline block */
+      vertical-align: top; /* Align the text message to the top of the image */
+    }
+    /* Style for the table */
+    table {
+      margin-top: 20px; /* Add some top margin for spacing from the text message */
+      border-collapse: collapse; /* Collapse the border of the table cells */ 
+      width: 100%; /* Set the width of the table to 100% */
+      size: 20px;
+    }
+    th, td {
+      border: 0px solid #333; /* Add a border to the table cells */
+      padding: 8px; /* Add padding to the table cells */
+      text-align: left; /* Set the text alignment to left in the table cells */
+    }
+    th {
+      background-color: #f2f2f2; /* Set the background color of the table header cells */
+      font-weight: bold; /* Set the font weight of the table header cells to bold */
+    }
+    
+  </style>
+</head>
+<body>
+ 
+  <img id="myImage" src="{{image}}"alt="An example image" >
+
+  <div class="text-message">
+  
+    {% if no_reviews_message %}
+    <p>{{ no_reviews_message }}</p>
+  {% endif %}
+</div>
+<p>
+  Overall Rating : {{data.overall}}
+  {{ data.global}}, {{ data.total}} with reviews
+</p>
+<table>
+  <tr>
+    <td> 5 star</td>
+    <td>{{ data.five_stars }}</td>
+  </tr>
+  <tr>
+    <td> 4 star</td>
+    <td>{{ data.four_stars }}</td>
+  </tr>
+  <tr>
+    <td> 3 star</td>
+    <td>{{ data.three_stars }}</td>
+  </tr>
+  <tr>
+    <td> 2 star</td>
+    <td>{{ data.two_stars }}</td>
+  </tr>
+  <tr>
+    <td> 1 star</td>
+    <td>{{ data.one_stars }}</td>
+  </tr>
+
+</table>
+  </div>
+</body>
+</html>
+

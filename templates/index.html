@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sentiment Extraction</title>
+    <script>
+      
+      function showDivision(divisionNumber) {
+          // document.getElementById('division1').style.display = 'none';
+          document.getElementById('division1').style.display = 'none';
+          document.getElementById('division2').style.display = 'none';
+          document.getElementById('division3').style.display = 'none';
+          document.getElementById('division4').style.display = 'none';
+
+          document.getElementById('division' + divisionNumber).style.display = 'block';
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+      
+      // Code to hide divisions initially
+      document.getElementById('division2').style.display = 'none';
+      document.getElementById('division3').style.display = 'none';
+      document.getElementById('division4').style.display = 'none';
+      
+      document.getElementById('division1').style.display = 'block';
+    });
+
+  </script>
+`
+     <style>
+        body {
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        
+      }
+      .header {
+            background-color:  rgb(52, 78, 128);
+            width: 100%;  
+            position: fixed;
+            height: 50px;
+            top:0;
+            left:0;
+            z-index: 999;
+        }
+
+      .sidebar {
+            width: 180px;
+            background-color: rgb(52, 78, 128);
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            top: 50px;
+            left: 0;
+            right: 0;
+            color: #f8f8f8;
+        }
+
+        .sidebar a ,a{
+            display: block;
+            padding: 10px 0;
+            text-decoration: none;
+            color: #f8f8f8;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header a:hover ,.sidebar a:hover{
+            text-decoration: underline;
+        }
+    
+      .container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        height: 200px;
+        width: 500px;
+        margin: auto;
+        padding: 20px;
+        margin-top: 100px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        
+      }
+      .container2 {
+        border-radius: 8px;
+        height: auto;
+        width: 1000px;
+        margin-left: 180px;
+        
+        top: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+        color: #2c3c79; /* Change to your desired heading color */
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      form {
+        margin-top: 20px;
+      }
+      
+      input[type='text']{
+        width: 95%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      
+       input[type="file"] {
+        width: 95%;
+        padding: 12px;
+        border: 0px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+      
+      input[type="url"] {
+        width: 95%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      
+      button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background-color: #2c3c79; /* Change to your desired button color */
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+      
+      button[type="submit"]:hover {
+        text-decoration: underline;
+      }
+      
+      button[name='refresh'] {
+    width: 80px;
+    background-color: rgb(52, 78, 128);
+    color: #fff;
+    font-size: large;
+    left: 0;
+  } 
+
+      p {
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333;
+        font-size:medium;
+      }
+      
+      .file-upload {
+        text-align: center;
+        margin-top: 20px;
+      }
+      
+      .file-upload input[type="file"] {
+        display: flex;
+      }
+      
+      .file-upload label {
+        background-color: #1968e6; /* Change to your desired button color */
+        color: #fff;
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease-in-out;
+      }
+      
+      .file-upload label:hover {
+        background-color: #1968e6; /* Change to your desired button hover color */
+      }
+      
+      
+      </style>
+
+    
+  </head>
+ 
+  <body>
+
+    <div class="header">
+        <a href ='{{url_for('predict')}}'> 
+          <font size=6>Sentiment Analyzer</font>
+        </a>
+    </div>
+
+    <div class="sidebar" >
+        <a href="#" onclick="showDivision(2)">Text Analysis</a> 
+        <br>
+        <a href="#" onclick="showDivision(3)">File Analysis</a>
+        <br>
+        <a href="#" onclick="showDivision(4)">Reviews Analysis </a> 
+        <form action="{{url_for('click')}}" method="get">
+          <button id='refresh' type="submit" name="refresh">Refresh</button>
+        </form>
+    </div>
+  
+    <div  id="division1">
+      <div class="container2">
+        <video width="1360" height="700" controls autoplay muted loop>
+          <source src="static/webpage for Sentiment analysis.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+    </div>
+    
+    <div class="container" id="division2">
+      <h1>Text Analysis</h1>
+      <form action="/" method="post">
+        <input type="text" name="Text" placeholder="Enter text here" />
+        <button type="submit">Analyze the Text</button>
+      </form>
+      <p>{{Category}}</p> 
+     </div>
+    
+
+    <div class="container" id="division3">
+        <form
+          action="{{ url_for('submit')}}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <h1>File Analysis</h1>
+          <input type="file" name="file" value="filename"  placeholder="Upload the file"/>
+          <br />
+          <br />
+          <button type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="container" id ='division4'>
+        <form action="{{url_for('submit2')}}" method="post">
+          <h1> Reviews Analysis</h1>
+          <input type="url" name="url" placeholder="Please Enter the URL" />
+          <br />
+          <br />
+          <button type="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+    
+  </body>
+</html>
+
